@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.assertj.core.util.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,7 @@ public class FileSearchController {
   @ApiResponse(responseCode = "500", description = "Internal server error.", content = @Content)
   public String searchForKeyword(
     @Parameter(description = "keyword to be matched", example = "Awesome text") @RequestParam(value = "keyword") final String keyword) {
+    Preconditions.checkArgument(StringUtils.isNotBlank(keyword), "Keyword cannot be empty");
     return fileSearchService.searchForKeyword(keyword);
   }
 }

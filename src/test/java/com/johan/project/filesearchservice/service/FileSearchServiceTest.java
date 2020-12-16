@@ -22,5 +22,4 @@ class FileSearchServiceTest {
 
     Assertions.assertNotNull(searchResponse);
   }
-
 }
