@@ -6,7 +6,7 @@ Contract.make {
         method GET()
         urlPath("/documents") {
             queryParameters {
-                parameter 'keyword': anyNonEmptyString()
+                parameter 'keyword': value(c(anyNonEmptyString()), p("text"))
             }
         }
     }
