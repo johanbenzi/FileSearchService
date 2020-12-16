@@ -1,5 +1,6 @@
 package com.johan.project.filesearchservice.web;
 
+import com.johan.project.filesearchservice.service.FileSearchService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -7,13 +8,19 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @RequestMapping
 @RestController
 @Tag(name = "File Search Controller", description = "Handles requests for various search operations on pre loaded documents.")
 public class FileSearchController {
+
+  @Autowired
+  private FileSearchService fileSearchService;
 
   @GetMapping(path = "/documents")
   @ResponseStatus(value = HttpStatus.OK)
@@ -24,6 +31,6 @@ public class FileSearchController {
   @ApiResponse(responseCode = "500", description = "Internal server error.", content = @Content)
   public String searchForKeyword(
     @Parameter(description = "keyword to be matched", example = "Awesome text") @RequestParam(value = "keyword") final String keyword) {
-    return "Lorem ips " + keyword + " lorem ips";
+    return fileSearchService.searchForKeyword(keyword);
   }
 }
