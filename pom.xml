@@ -18,7 +18,7 @@
     <java.version>11</java.version>
     <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
     <springdoc-openapi.version>1.5.1</springdoc-openapi.version>
-    <serenity.version>2.3.9</serenity.version>
+    <serenity.version>2.3.4</serenity.version>
     <serenity-cucumber.version>2.3.6</serenity-cucumber.version>
   </properties>
 

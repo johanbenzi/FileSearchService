@@ -19,7 +19,7 @@ public class FileSearchService {
   public String searchForKeyword(final String keyword) {
     final int startingIndex = fileContent.indexOf(keyword);
     if(startingIndex == -1)
-      throw new KeywordNotFoundInDocumentException(format("Cannot find any matches for keyword: %s", keyword));
+      throw new KeywordNotFoundInDocumentException(format("Cannot find any matches for keyword: '%s'", keyword));
     return fileContent
       .substring(Math.max(startingIndex - 10, 0),
         Math.min(startingIndex + keyword.length() + 10, fileContent.length()));
