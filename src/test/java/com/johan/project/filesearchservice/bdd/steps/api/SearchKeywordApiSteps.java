@@ -3,6 +3,7 @@ package com.johan.project.filesearchservice.bdd.steps.api;
 import lombok.extern.log4j.Log4j2;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.annotations.Step;
 import org.junit.Ignore;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -26,10 +27,12 @@ public class SearchKeywordApiSteps {
 
   private String fileSearchServiceRunningUrl;
 
+  @Step(value = "Save a keyword in serenity session")
   public void saveKeyword(final String keyword) {
     Serenity.getCurrentSession().put("KEYWORD", keyword);
   }
 
+  @Step(value = "Attempt to match keyword against text block by hitting the endpoint")
   public void searchKeyword() {
     setFileSearchServiceRunningUrl();
     SerenityRest.enableLoggingOfRequestAndResponseIfValidationFails();
@@ -40,10 +43,12 @@ public class SearchKeywordApiSteps {
       .get(format("%s/documents?keyword=%s", fileSearchServiceRunningUrl, Serenity.getCurrentSession().get("KEYWORD")));
   }
 
+  @Step(value = "Assert response code")
   public void assertResponseCode(final int statusCode) {
     assertThat(SerenityRest.then().extract().statusCode(), is(statusCode));
   }
 
+  @Step(value = "Assert response message")
   public void assertResponseMessage(final String responseMessage) {
     assertThat(SerenityRest.then().extract().response().getBody().prettyPrint(), is(responseMessage));
   }

@@ -129,6 +129,12 @@
           <mainClass>
             com.johan.project.filesearchservice.FileSearchServiceApplication
           </mainClass>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
         </configuration>
       </plugin>
 
@@ -174,18 +180,6 @@
           <baseClassForTests>
             com.johan.project.filesearchservice.contract.BaseContractTest
           </baseClassForTests>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-            </exclude>
-          </excludes>
         </configuration>
       </plugin>
 
