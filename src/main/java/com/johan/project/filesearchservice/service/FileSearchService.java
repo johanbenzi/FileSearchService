@@ -14,7 +14,7 @@ import static java.lang.String.format;
 public class FileSearchService {
 
   @Value("${com.johan.project.file.content}")
-  private final String fileContent;
+  private String fileContent;
 
   public String searchForKeyword(final String keyword) {
     final int startingIndex = fileContent.indexOf(keyword);
