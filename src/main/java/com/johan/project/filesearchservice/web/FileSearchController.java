@@ -27,12 +27,12 @@ public class FileSearchController {
   @GetMapping(path = "/documents")
   @ResponseStatus(value = HttpStatus.OK)
   @Operation(summary = "Search for a keyword in preloaded memory and return context if matched")
-  @ApiResponse(responseCode = "200", description = "Keyword matched and context returned", content = @Content(schema = @Schema(implementation = String.class), examples = @ExampleObject(value = "This is an Awesome text matched")))
+  @ApiResponse(responseCode = "200", description = "Keyword matched and context returned", content = @Content(schema = @Schema(implementation = String.class), examples = @ExampleObject(value = "Lorem ipsum dolor sit")))
   @ApiResponse(responseCode = "400", description = "Bad data found", content = @Content)
-  @ApiResponse(responseCode = "404", description = "Cannot find keyword in document", content = @Content(schema = @Schema(implementation = String.class), examples = @ExampleObject(value = "This is an Awesome text matched")))
+  @ApiResponse(responseCode = "404", description = "Cannot find keyword in document", content = @Content(schema = @Schema(implementation = String.class), examples = @ExampleObject(value = "Cannot find any matches for keyword: 'ipsum'")))
   @ApiResponse(responseCode = "500", description = "Internal server error.", content = @Content)
   public String searchForKeyword(
-    @Parameter(description = "keyword to be matched", example = "truth") @RequestParam(value = "keyword") final String keyword) {
+    @Parameter(description = "keyword to be matched", example = "ipsum") @RequestParam(value = "keyword") final String keyword) {
     Preconditions.checkArgument(StringUtils.isNotBlank(keyword), "Keyword cannot be empty");
     return fileSearchService.searchForKeyword(keyword);
   }
